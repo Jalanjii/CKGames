@@ -1,9 +1,7 @@
-# program template for Spaceship
 import simplegui
 import math
 import random
 
-# globals for user interface
 WIDTH = 800
 HEIGHT = 600
 score = 0
@@ -39,49 +37,33 @@ class ImageInfo:
         return self.animated
 
     
-# art assets created by Kim Lathrop, may be freely re-used in non-commercial projects, please credit Kim
-    
-# debris images - debris1_brown.png, debris2_brown.png, debris3_brown.png, debris4_brown.png
-#                 debris1_blue.png, debris2_blue.png, debris3_blue.png, debris4_blue.png, debris_blend.png
 debris_info = ImageInfo([320, 240], [640, 480])
 debris_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/debris2_blue.png")
 
-# nebula images - nebula_brown.png, nebula_blue.png
 nebula_info = ImageInfo([400, 300], [800, 600])
 nebula_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/nebula_blue.f2014.png")
 
-# splash image
 splash_info = ImageInfo([200, 150], [400, 300])
 splash_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/splash.png")
 
-# ship image
 ship_info = ImageInfo([45, 45], [90, 90], 35)
 ship_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/double_ship.png")
 
-# missile image - shot1.png, shot2.png, shot3.png
 missile_info = ImageInfo([5,5], [10, 10], 3, 50)
 missile_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/shot2.png")
 
-# asteroid images - asteroid_blue.png, asteroid_brown.png, asteroid_blend.png
 asteroid_info = ImageInfo([45, 45], [90, 90], 40)
 asteroid_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/asteroid_blue.png")
 
-# animated explosion - explosion_orange.png, explosion_blue.png, explosion_blue2.png, explosion_alpha.png
 explosion_info = ImageInfo([64, 64], [128, 128], 17, 24, True)
 explosion_image = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/explosion_alpha.png")
 
-# sound assets purchased from sounddogs.com, please do not redistribute
 soundtrack = simplegui.load_sound("http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/soundtrack.mp3")
 missile_sound = simplegui.load_sound("http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/missile.mp3")
 missile_sound.set_volume(.5)
 ship_thrust_sound = simplegui.load_sound("http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/thrust.mp3")
 explosion_sound = simplegui.load_sound("http://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/explosion.mp3")
 
-# alternative upbeat soundtrack by composer and former IIPP student Emiel Stopler
-# please do not redistribute without permission from Emiel at http://www.filmcomposer.nl
-#soundtrack = simplegui.load_sound("https://storage.googleapis.com/codeskulptor-assets/ricerocks_theme.mp3")
-
-# helper functions to handle transformations
 def angle_to_vector(ang):
     return [math.cos(ang), math.sin(ang)]
 
@@ -89,7 +71,6 @@ def dist(p,q):
     return math.sqrt((p[0] - q[0]) ** 2+(p[1] - q[1]) ** 2)
 
 
-# Ship class
 class Ship:
     def __init__(self, pos, vel, angle, image, info):
         self.pos = [pos[0],pos[1]]
@@ -168,7 +149,6 @@ class Ship:
         return self.pos
               
         
-# Sprite class
 class Sprite:
     def __init__(self, pos, vel, ang, ang_vel, image, info, sound = None):
         self.pos = [pos[0],pos[1]]
@@ -264,7 +244,6 @@ def draw(canvas):
     
     global time, started, lives, score
     
-    # animiate background
     time += 1
     wtime = (time / 4) % WIDTH
     center = debris_info.get_center()
@@ -273,25 +252,20 @@ def draw(canvas):
     canvas.draw_image(debris_image, center, size, (wtime - WIDTH / 2, HEIGHT / 2), (WIDTH, HEIGHT))
     canvas.draw_image(debris_image, center, size, (wtime + WIDTH / 2, HEIGHT / 2), (WIDTH, HEIGHT))
 
-    # draw UI
     canvas.draw_text("Lives: "+str(lives), [50, 50], 22, "White")
     canvas.draw_text("Score: "+str(score), [680, 50], 22, "White")
     score += group_group_collide(rock_group, missile_group)
     
-    #collision lost life
     if group_collide(rock_group, my_ship):
         lives -= 1
     if lives == 0:
         started = False
         
-    # draw ship and sprites
     my_ship.draw(canvas)   
     process_sprite_group(canvas, missile_group)
     process_sprite_group(canvas, explosion_group)
-    # update ship and sprites
     my_ship.update()
 
-    # draw splash screen if not started
     if not started:
         rock_group.difference_update(rock_group)
         canvas.draw_image(splash_image, splash_info.get_center(), 
@@ -300,7 +274,6 @@ def draw(canvas):
     else:
         process_sprite_group(canvas, rock_group)
         
-# timer handler that spawns a rock    
 def rock_spawner():
     global score
     rock_pos = [random.randrange(0, WIDTH), random.randrange(0, HEIGHT)]
@@ -340,22 +313,17 @@ def group_group_collide(group_1, group_2):
     return count
 
     
-# initialize frame
 frame = simplegui.create_frame("Asteroids", WIDTH, HEIGHT)
-# initialize ship and two sprites
 my_ship = Ship([WIDTH / 2, HEIGHT / 2], [0, 0], 0, ship_image, ship_info)
 missile_group = set([])
 rock_group = set([])
 explosion_group = set([])
 
-# register handlers
 frame.set_draw_handler(draw)
 frame.set_keydown_handler(key_handlerd)
 frame.set_keyup_handler(key_handleru)
 frame.set_mouseclick_handler(click)
 timer = simplegui.create_timer(1000.0, rock_spawner)
 
-
-# get things rolling
 timer.start()
 frame.start()
