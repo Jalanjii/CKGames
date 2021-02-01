@@ -1,5 +1,7 @@
 # SimpleGames
 
+These games were written in 2017 on the very friendly environment CodeSkulptor.
+
 [Pong][1]
 
   [1]: http://www.codeskulptor.org/#user43_R8wqT6X0YK_6.py
