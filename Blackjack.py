@@ -1,4 +1,3 @@
-# Mini-project #6 - Blackjack
 
 import simplegui
 import random
@@ -12,17 +11,16 @@ CARD_BACK_SIZE = (72, 96)
 CARD_BACK_CENTER = (36, 48)
 card_back = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/card_jfitz_back.png")    
 
-# initialize some useful global variables
+
 in_play = False
 outcome = ""
 score = 0
 
-# define globals for cards
+
 SUITS = ('C', 'S', 'H', 'D')
 RANKS = ('A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K')
 VALUES = {'A':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':10, 'Q':10, 'K':10}
 
-# define card class
 class Card:
     def __init__(self, suit, rank):
         if (suit in SUITS) and (rank in RANKS):
@@ -47,7 +45,6 @@ class Card:
                     CARD_CENTER[1] + CARD_SIZE[1] * SUITS.index(self.suit))
         canvas.draw_image(card_images, card_loc, CARD_SIZE, [pos[0] + CARD_CENTER[0], pos[1] + CARD_CENTER[1]], CARD_SIZE)
         
-# define hand class
 class Hand:
     def __init__(self):
         self.hand = []	# create Hand object
@@ -92,7 +89,6 @@ class Hand:
                 canvas.draw_text("You Can't Hit More, Stand!", (350, 100), 20, "Red")
             i += 1            
         
-# define deck class 
 class Deck:
     def __init__(self):
         self.deck = []
@@ -114,7 +110,6 @@ class Deck:
         return "Deck contains" + stri
 
 
-#define event handlers for buttons
 def deal():
     global outcome, in_play, player, dealer, deckshuffle, deck, score
     deck = Deck()
@@ -155,10 +150,9 @@ def hit():
 
 def stand():
     global outcome, in_play, score
-    # replace with your code below
     if not in_play:
         return "You have Just Busted!"
-    while in_play:# if hand is in play, repeatedly hit dealer until his hand has value 17 or more
+    while in_play:
         dealer.add_card(deck.deal_card())
         if 17 <= dealer.get_value()<= 21:
             in_play = True
@@ -175,12 +169,11 @@ def stand():
         
             
     return outcome
-    # assign a message to outcome, update in_play and score
+
     
-# draw handler    
+  
 def draw(canvas):
     global player, outcome
-    # test to make sure that card.draw works, replace with your code belo
     player.draw(canvas, [72, 120])
     dealer.draw(canvas, [72, 240])
     canvas.draw_text("Blackjack Game", (160, 60), 40, "White")
@@ -192,18 +185,14 @@ def draw(canvas):
         canvas.draw_image(card_back, CARD_BACK_CENTER, CARD_BACK_SIZE, [72 + CARD_CENTER[0],
                                                     240 + CARD_CENTER[1]], CARD_BACK_SIZE)
     
-# initialization frame
 frame = simplegui.create_frame("Blackjack", 600, 600)
 frame.set_canvas_background("Green")
 
-#create buttons and canvas callback
 frame.add_button("Deal", deal, 200)
 frame.add_button("Hit",  hit, 200)
 frame.add_button("Stand", stand, 200)
 frame.set_draw_handler(draw)
 
-# get things rolling
 deal()
 
 frame.start()
-# remember to review the grading rubric
