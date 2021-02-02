@@ -4,25 +4,25 @@ These games were developed in 2017 using the very friendly environment CodeSkulp
 
 [Pong][1]
 
-  [1]: http://www.codeskulptor.org/#user43_R8wqT6X0YK_6.py
+  [1]: http://www.codeskulptor.org/#user48_1wsAy0iXF7Brtlq.py
 
 [Stopwatch][2]
 
-  [2]: http://www.codeskulptor.org/#user43_2K8yJmq57D_0.py
+  [2]: http://www.codeskulptor.org/#user48_ETJYgT9Fz0gxaFF.py
   
 [Guess The Number][3]
 
-  [3]: http://www.codeskulptor.org/#user43_dvkied74lJ_9.py
+  [3]: http://www.codeskulptor.org/#user48_e3tr7G0frLCNJAK.py
   
 [Memory][4]
 
-  [4]: http://www.codeskulptor.org/#user48_RX3KrOhBOGzlFpC.py
+  [4]: http://www.codeskulptor.org/#user48_h72OWs1WnK6ja5v.py
   
 [Blackjack][5]
 
-  [5]: http://www.codeskulptor.org/#user46_4Ed3FmNWKLJsduX_0.py
+  [5]: http://www.codeskulptor.org/#user48_m4i0Y3eTmpDEpYk.py
 
 [Spaceship][6]
 
-  [6]: http://www.codeskulptor.org/#user46_UfJNYszquNltPJH.py
+  [6]: http://www.codeskulptor.org/#user48_vV7y3TGOxniarNy.py
   
