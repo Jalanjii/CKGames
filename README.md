@@ -1,6 +1,6 @@
 # SimpleGames
 
-These games were developed in 2017 using the very friendly environment CodeSkulptor.
+These games I developed in 2017 using the very friendly environment CodeSkulptor.
 
 [Pong][1]
 
