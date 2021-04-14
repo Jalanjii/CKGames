@@ -2,7 +2,7 @@
 import simplegui
 import random
 
-# load card sprite - 936x384 - source: jfitz.com
+load card sprite - 936x384 - source: jfitz.com
 CARD_SIZE = (72, 96)
 CARD_CENTER = (36, 48)
 card_images = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/cards_jfitz.png")
@@ -47,21 +47,21 @@ class Card:
         
 class Hand:
     def __init__(self):
-        self.hand = []	# create Hand object
+        self.hand = []
 
     def __str__(self):
         stri = ""
-        for i in self.hand:# return a string representation of a hand
+        for i in self.hand:
             stri += " " + str(i)
         return "Hand Contains" + stri
             
 
     def add_card(self, card):
-        self.hand.append(card)	# add a card object to a hand
+        self.hand.append(card)	
+        
 
     def get_value(self):
-        # count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust
-        # compute the value of the hand, see Blackjack video
+
         value = 0
         ace = False
         if len(self.hand) == 0: return value
@@ -92,20 +92,20 @@ class Hand:
 class Deck:
     def __init__(self):
         self.deck = []
-        for i in RANKS:# create a Deck object
+        for i in RANKS:
             for j in SUITS:
                 self.deck.append(Card(j, i))
 
     def shuffle(self):
-        # shuffle the deck 
-        random.shuffle(self.deck)    # use random.shuffle()
+       
+        random.shuffle(self.deck)   
 
     def deal_card(self):
-        return random.choice(self.deck)	# deal a card object from the deck
+        return random.choice(self.deck)
     
     def __str__(self):
         stri = ""
-        for i in self.deck:	# return a string representing the deck
+        for i in self.deck:	
             stri += " " + str(i)
         return "Deck contains" + stri
 
@@ -137,12 +137,12 @@ def deal():
     
 def hit():
     global in_play, outcome, score
-    if player.get_value() <= 21 and in_play:# if the hand is in play, hit the player
+    if player.get_value() <= 21 and in_play:
         player.add_card(deck.deal_card())
-#        outcome = "Dealer "+str(dealer)+", Player "+str(player)
+
         in_play = True
         
-    if player.get_value() > 21:# if busted, assign a message to outcome, update in_play and score
+    if player.get_value() > 21:
         in_play = False
         outcome = "You have Just Busted!"
         score -= 1
