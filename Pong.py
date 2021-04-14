@@ -19,7 +19,7 @@ ball_vel = [1, 0]
 
 
 def spawn_ball(direction):
-    global ball_pos, ball_vel # these are vectors stored as lists
+    global ball_pos, ball_vel 
     ball_pos = [WIDTH / 2, HEIGHT / 2]
     ball_vel = [0, 0]
     if direction == RIGHT:
@@ -30,7 +30,7 @@ def spawn_ball(direction):
     
     
 def new_game():
-    global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel  # these are numbers
+    global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel  
     global score1, score2 
     spawn_ball(LEFT)
     paddle1_pos = float(HEIGHT / 2)
@@ -71,7 +71,7 @@ def draw(canvas):
         
         
         
-    # draw paddles
+    
     canvas.draw_line((HALF_PAD_WIDTH, paddle2_pos - HALF_PAD_HEIGHT), 
                      (HALF_PAD_WIDTH, paddle2_pos + HALF_PAD_HEIGHT), 8, 'White')
     canvas.draw_line([WIDTH - HALF_PAD_WIDTH, paddle1_pos - HALF_PAD_HEIGHT], 
